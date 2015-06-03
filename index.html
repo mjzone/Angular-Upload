@@ -4,6 +4,7 @@
 <head>
     <title>Exercise - Whatif</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <script type="text/javascript" src="bower_components/angularjs/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -12,25 +13,36 @@
 </head>
 
 <body>
-    <div class="container">
-        <div ng-controller="Exercise">
-            <div>
-                <input type="text" ng-model="slideName" placeholder="title" />
-                <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" accept="image/*,application/pdf">Drop images here or click to upload</div>
-                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-                <br/>
-                <input type="text" ng-model="slideDescription" placeholder="description" />
-                <button ng-click="add()" ng-disabled="!isUploaded">{{buttonText}}</button>
-                <div ng-repeat="item in slides">
-                    <span>Name: {{item.name}}  <br/>Description: {{item.description}}  <br/>Url: {{item.url}}</span>
-                    <br/>
-                    <button ng-click="remove($index)">Remove</button>
-                </div>
-                <!-- <ul>
+    <div ng-controller="Exercise">
+        <div>
+            <input type="text" ng-model="slideName" placeholder="title" />
+            <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" accept="image/*">Drop images here or click to upload</div>
+            <div ngf-no-file-drop>
+            <span>File Drag/Drop is not supported for this browser</span>
+            </div>
+            <img  class="image" src={{slideImageUrl}}>
+            <br/>
+            <input type="text" ng-model="slideDescription" placeholder="description" />
+            <button class="btn btn-primary" ng-click="add()" ng-disabled="!isUploaded">{{buttonText}}</button>
+          <!--   <div ng-repeat="item in slides">
+              <div>Name: {{item.name}}
+                  <br/>Description: {{item.description}} Image: {{item.url}}<br/>
+
+                  <img src="{{item.url}}" >
+              </div>
+              <br/>
+              <div ng-show="isEditing">
+                  <input type="text" ng-model="item.name" placeholder="name">
+                  <input type="text" ng-model="item.description" placeholder="description">
+                  <div ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" accept="image/*">Drop images here or click to upload</div>
+              </div>
+              <button class="btn btn-info" ng-click="edit()">Edit</button>
+              <button class="btn btn-danger" ng-click="remove($index)">-</button>
+          </div>  -->
+            <!-- <ul>
                 <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
             </ul> -->
-                <!-- <pre>{{log}}</pre> -->
-            </div>
+            <!-- <pre>{{log}}</pre> -->
         </div>
     </div>
 </body>

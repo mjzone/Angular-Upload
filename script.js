@@ -8,7 +8,13 @@ app.controller('Exercise', ['$scope', 'Upload',
         $scope.log = '';
         $scope.slides = [];
         $scope.isUploaded = true;
-        $scope.buttonText = "Add Slide";
+        $scope.buttonText = "+";
+        $scope.isEditing = false;
+
+
+        $scope.edit = function() {
+            $scope.isEditing = !$scope.isEditing;
+        };
 
         $scope.add = function() {
             $scope.slides.push({
@@ -16,9 +22,9 @@ app.controller('Exercise', ['$scope', 'Upload',
                 "description": $scope.slideDescription,
                 "url": $scope.slideImageUrl
             });
-            $scope.slideName = "";
-            $scope.slideDescription = "";
-            $scope.slideImageUrl = "";
+           // $scope.slideName = "";
+           // $scope.slideDescription = "";
+           // $scope.slideImageUrl = "";
             console.log($scope.slides);
         };
 
@@ -43,10 +49,9 @@ app.controller('Exercise', ['$scope', 'Upload',
                         $scope.log = 'progress: ' + progressPercentage + '% ' + evt.config.file.name + '\n' + $scope.log;
                     }).success(function(data, status, headers, config) {
                         $scope.isUploaded = true;
-                        $scope.buttonText = "Add Slide";
-                        $scope.slideImageUrl = config.file.name;
-
-
+                        $scope.buttonText = "+";
+                        // $scope.slideImageUrl = config.file.name;
+                        $scope.slideImageUrl = "http://www.hdwallpapersimages.com/wp-content/uploads/2014/01/Winter-Tiger-Wild-Cat-Images-540x303.jpg";
                         // $scope.log = 'file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n' + $scope.log;
                         //$scope.$apply();
                     });
