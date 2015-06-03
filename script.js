@@ -6,12 +6,19 @@ app.controller('Exercise', ['$scope', 'Upload',
         });
 
         $scope.log = '';
-
         $scope.slides = [];
+        $scope.isUploaded = true;
+        $scope.buttonText = "Add Slide";
 
         $scope.add = function() {
-            $scope.slides.push($scope.slide);
-            $scope.slide = "";
+            $scope.slides.push({
+                "name": $scope.slideName,
+                "description": $scope.slideDescription,
+                "url": $scope.slideImageUrl
+            });
+            $scope.slideName = "";
+            $scope.slideDescription = "";
+            $scope.slideImageUrl = "";
             console.log($scope.slides);
         };
 
@@ -30,11 +37,18 @@ app.controller('Exercise', ['$scope', 'Upload',
                         },
                         file: file
                     }).progress(function(evt) {
+                        $scope.isUploaded = false;
+                        $scope.buttonText = "Uploading...";
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         $scope.log = 'progress: ' + progressPercentage + '% ' + evt.config.file.name + '\n' + $scope.log;
                     }).success(function(data, status, headers, config) {
-                        $scope.log = 'file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n' + $scope.log;
-                        // $scope.$apply();
+                        $scope.isUploaded = true;
+                        $scope.buttonText = "Add Slide";
+                        $scope.slideImageUrl = config.file.name;
+
+
+                        // $scope.log = 'file ' + config.file.name + 'uploaded. Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                        //$scope.$apply();
                     });
                 }
             }
