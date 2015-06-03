@@ -1,0 +1,20 @@
+{
+  "name": "Classic",
+  "version": "0.0.0",
+  "authors": [
+    "Manoj <mj.bitwave@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.0",
+    "ng-file-upload": "~4.2.4",
+    "bootstrap": "~3.3.4"
+  }
+}

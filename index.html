@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="fileUpload">
+    <head>
+        <title>Exercise - Whatif</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="bower_components/angularjs/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body>
+        <div ng-controller="Exercise">
+
+        <div>
+            <input  type="text" ng-model="slide.id"/>
+            <input type="text" ng-model="slide.name"/>
+            <button ng-click="add(slide)">Add</button>
+        </div>
+        <div ng-repeat="item in slides">
+        <span>{{item.id}} - {{item.name}}</span>
+        <button ng-click="remove($index)">Remove</button>
+        </div>
+
+
+            <div ngf-drop ngf-select ng-model="files" class="drop-box"
+                ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+            accept="image/*,application/pdf">Drop images here or click to upload</div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+            Files:
+            <ul>
+                <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+            </ul>
+            Upload Log:
+<pre>{{log}}</pre>
+        </div>
+    </body>
+</html>
